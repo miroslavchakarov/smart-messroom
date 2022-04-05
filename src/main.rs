@@ -1,6 +1,5 @@
-//hd
+//hd44780
 use std::{thread, time};
-//use linux_embedded_hal::{Delay, Pin};
 use linux_embedded_hal::Pin;
 use linux_embedded_hal::sysfs_gpio::Direction;
 use hd44780_hal::HD44780;
@@ -14,7 +13,6 @@ use nb::block;
 fn main() -> Result<(), Error> 
 {
     //hx711 declarations
-
     let spi = Spi::new(Bus::Spi0, SlaveSelect::Ss0, 1_000_000, Mode::Mode0)?;
     let mut hx711 = Hx711::new(spi, Delay::new());
 
@@ -33,7 +31,7 @@ fn main() -> Result<(), Error>
 
     let n = 5;
 
-    //screen declarations and init
+    //screen declarations
     let rs = Pin::new(13);
     let en = Pin::new(19);
 
@@ -81,8 +79,6 @@ fn main() -> Result<(), Error>
     lcd.write_str("0 kg.");
 
     loop {
-        
-        
         let mut value: f32 = 0.0;
         for _ in 0..n {
             let reading = block!(hx711.read()).unwrap() as f32;
@@ -97,7 +93,6 @@ fn main() -> Result<(), Error>
         let s = format!("{:.1$}", value-zero_value, 2);
         lcd.write_str(&s);
         
-
         // for i in 1..6 {
         //     lcd.set_cursor_pos(0);
         //     lcd.write_str("Customer nr. ");
@@ -105,7 +100,6 @@ fn main() -> Result<(), Error>
         //     lcd.write_str(&s);
         //     thread::sleep(time::Duration::from_millis(1000));
         // }
-
     }
 }
 
