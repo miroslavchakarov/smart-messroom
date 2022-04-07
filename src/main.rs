@@ -1,5 +1,5 @@
 //hd44780
-use std::{thread, time};
+use std::thread;
 use linux_embedded_hal::Pin;
 use linux_embedded_hal::sysfs_gpio::Direction;
 use hd44780_hal::HD44780;
@@ -9,6 +9,7 @@ use rppal::{spi::{Spi, Bus, SlaveSelect, Mode, Error},hal::Delay};
 use hx711_spi::Hx711;
 use nb::block;
 //use std::thread;
+
 
 fn main() -> Result<(), Error> 
 {
@@ -20,6 +21,8 @@ fn main() -> Result<(), Error>
 	hx711.reset()?;
 
     let mut zero_value: f32 = 0.0;
+    let one_kg_value: f32 = 130670.0;
+
     for i in 0..20 {
         let reading = block!(hx711.read()).unwrap() as f32;
         println!("{:>2}: {}", i, reading);
@@ -80,17 +83,25 @@ fn main() -> Result<(), Error>
 
     loop {
         let mut value: f32 = 0.0;
+        let mut tara_val: f32 = 0.0;
+        let mut kg_val: f32 = 0.0;
         for _ in 0..n {
             let reading = block!(hx711.read()).unwrap() as f32;
             value += reading;
         }
         value /= n as f32;
-        println!("Read: {} ------ Tara val: {}", value as i32, (value-zero_value) as i32);
+        tara_val = value-zero_value;
+        kg_val = tara_val/one_kg_value;
+        println!(
+            "Read: {} --- Tara val: {} --- kg: {:.2}", 
+            value as i32, 
+            tara_val as i32, 
+            kg_val);
         thread::sleep_ms(10);
         lcd.set_cursor_pos(30);
         lcd.write_str("          ");
         lcd.set_cursor_pos(30);
-        let s = format!("{:.1$}", value-zero_value, 2);
+        let s = format!("{:.0} g.", kg_val * 1000.0);
         lcd.write_str(&s);
         
         // for i in 1..6 {

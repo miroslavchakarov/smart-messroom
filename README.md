@@ -11,13 +11,18 @@ See more on the video below:
 
 https://1drv.ms/v/s!Ak5sft2RFM38jb4jOWfsavIP3ROe2A?e=IfUv9y
 
-Note: Give it a few seconds to load as onedrive is a bit slower.
+(Note: Give it a few seconds to load as onedrive is a bit slower.)
 
-(DONE) At this stage it can show the load cell ADC data on the 2004 LCD screen. It will get more complex in time.
 
-The near-future goal for the Smart Messroom is:
+As per this moment it can show the load cell ADC data on the 2004 LCD screen. It will get more complex in time.
+Update: It can now show not only raw values but the values converted in grams and kilograms as well!
+
+The near-future goals for the Smart Messroom are (TODO):
 
  (DONE!) - To make the ADC (Analogue-to-Digital-Converter) and the 2004 LCD screen work with Rust and RPI2. (See other two repos)
+ - Raise an event when worker picks up food from the food container and assign the difference in grams to the current customer.
+ - Ability to reset and start from the beginning in case quantity is not appropriate.
+
 
 The long-term goals for this system would be the following:
 
