@@ -21,7 +21,8 @@ The near-future goals for the Smart Messroom are (TODO):
 
  (DONE!) - To make the ADC (Analogue-to-Digital-Converter) and the 2004 LCD screen work with Rust and RPI2. (See other two repos)
  - Raise an event when worker picks up food from the food container and assign the difference in grams to the current customer.
- - Ability to reset and start from the beginning in case quantity is not appropriate.
+ - Calibration funcion (tara) while program running. (Currently the calibration value is hard coded)
+ - Ability to reset and start measurement from the beginning in case quantity is not appropriate.
 
 
 The long-term goals for this system would be the following:
