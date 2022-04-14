@@ -17,17 +17,18 @@ https://1drv.ms/v/s!Ak5sft2RFM38jb4jOWfsavIP3ROe2A?e=IfUv9y
 As per this moment it can show the load cell ADC data on the 2004 LCD screen. It will get more complex in time.
 Update: It can now show not only raw values but the values converted in grams and kilograms as well!
 
+Update 14.04.: It can now show the quantity of food taken from the weigh scale.
+
 The near-future goals for the Smart Messroom are (TODO):
 
- (DONE!) - To make the ADC (Analogue-to-Digital-Converter) and the 2004 LCD screen work with Rust and RPI2. (See other two repos)
- - Raise an event when worker picks up food from the food container and assign the difference in grams to the current customer.
- - Calibration funcion (tara) while program running. (Currently the calibration value is hard coded)
+ - (DONE!) To make the ADC (Analogue-to-Digital-Converter) and the 2004 LCD screen work with Rust and RPI2. (See other two repos)
+ - (Almost done!) Raise an event when worker picks up food from the food container and assign the difference in grams to the current customer.
+ - Add new customer and display the customer number, product and quantity of food for the current client on the LCD 2004 screen.
  - Ability to reset and start measurement from the beginning in case quantity is not appropriate.
 
 
 The long-term goals for this system would be the following:
-
- - Add new customer and display the customer number, product and quantity of food for the current client on the LCD 2004 screen.
- - Having a touch-friendly GUI on the 7-inch Touchscreen for the worker to operate with the device.
+ - Calibration funcion (tara) while program running. (Currently the calibration value is hard coded)
+ - Having a touch-friendly GUI on the 7-inch Touchscreen for the worker to operate with the device. (Currently testing various GUI libraries  suitable for Raspberry Pi)
  - Having a payment system integrated, eventually with cryptocurrency or fiat currency.
 

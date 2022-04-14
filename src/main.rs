@@ -115,10 +115,7 @@ fn main() -> Result<(), Error>
             ADC.adcVal as i32, 
             ADC.taraVal as i32, 
             ADC.kgVal);
-        //lcd.set_cursor_pos(30);
-       // let s = format!("{:.0} g.   ", ADC.kgVal * 1000.0);
-       // lcd.write_str(&s);
-        
+                
         if (ADC.kgVal - ADC.previousKgVal) > 0.002 {
             println!("--- START LISTENING --- {}", ADC.kgVal - ADC.previousKgVal);
             lcd.set_cursor_pos(40);
@@ -129,7 +126,6 @@ fn main() -> Result<(), Error>
             println!("---STOP LISTENING--- To be added: {:.3}", ADC.kgVal);
             lcd.set_cursor_pos(40);
             lcd.write_str("Almost there...");
-
 
             flag = true;
             counter = 0;
